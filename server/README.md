@@ -79,6 +79,7 @@ The server currently has the following routes:
 
 - `GET /`: Returns a simple "Hello, World!" message.
 - `GET /health`: Returns OK if the server is running.
+- `POST /graphql`: Handles GraphQL requests and logs request details including timestamp, IP address, and query parameters.
 
 ## License
 
