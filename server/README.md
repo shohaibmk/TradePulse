@@ -71,14 +71,14 @@ The server uses the following middleware:
 - **Helmet**: For security by setting various HTTP headers.
 - **CORS**: To handle Cross-Origin Resource Sharing, allowing only specific HTTP methods (GET, POST, PUT, DELETE).
 - **Express.json()**: To parse incoming JSON requests.
+- **Rate Limiter**: To limit the number of requests from a single IP address, preventing abuse.
 
 ## Routes
 
-The server currently has the following route:
+The server currently has the following routes:
 
 - `GET /`: Returns a simple "Hello, World!" message.
-- `GET /health`: Returns OK if server is running.
-
+- `GET /health`: Returns OK if the server is running.
 
 ## License
 
