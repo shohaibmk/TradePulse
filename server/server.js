@@ -2,8 +2,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
-import corsOptions from './middleware/Middleware.js';// Import CORS options
+import corsOptions from './middleware/corsOptions.js';// Import CORS options
 import routes from './routes/index.js'; // Import routes
+import limiter from './middleware/rateLimiter.js'; // Import rate limiter middleware
 
 // Load environment variables from .env file
 dotenv.config();
@@ -22,6 +23,7 @@ const setupMiddleware = () => {
     app.use(helmet()); // Use helmet for security
     app.use(corsOptions); // Add cors middleware with options
     app.use(express.json()); // Middleware to parse JSON bodies
+    app.use(limiter); // Apply rate limiting middleware
 };
 
 // Route setup

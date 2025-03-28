@@ -9,6 +9,11 @@ router.get('/', (req, res) => {
 });
 
 router.get('/health', (req, res) => {
+    const timestamp = new Date().toISOString(); // Get the current timestamp
+    const ipAddress = req.ip; // Get the client's IP address
+
+    console.log(`Health check at ${timestamp} from IP: ${ipAddress}`); // Log the timestamp and IP address
+
     res.status(200).send('OK');
 });
 
