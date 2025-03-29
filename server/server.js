@@ -24,11 +24,19 @@ const setupMiddleware = () => {
     app.use(corsOptions); // Add cors middleware with options
     app.use(express.json()); // Middleware to parse JSON bodies
     app.use(limiter); // Apply rate limiting middleware
+    app.use(errorHandler); // Register error handling middleware
+
 };
 
 // Route setup
 const setupRoutes = () => {
     app.use('/', routes); // Use the routes
+};
+
+// Error handling middleware
+const errorHandler = (err, req, res, next) => {
+    console.error(err.stack); // Log the error stack
+    res.status(500).send('Something went wrong!'); // Send a generic error response
 };
 
 // Start the server

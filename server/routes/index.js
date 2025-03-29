@@ -1,14 +1,14 @@
 import express from 'express';
 import { createHandler } from 'graphql-http/lib/use/express';
 import schema from '../schema/schema.js';
-
+import { mongoDBConnection } from '../schema/schema.js';
 const router = express.Router();
 
 // Function to log request details
 const logRequestDetails = (req) => {
     const timestamp = new Date().toISOString(); // Get the current timestamp
     const ipAddress = req.ip; // Get the client's IP address
-    console.log(`GET /graphql at ${timestamp} from IP: ${ipAddress} for Query:${JSON.stringify(req.query)}`); // Log the timestamp and IP address
+    console.log(`GET /graphql at ${timestamp} from IP: ${ipAddress} for Query:${JSON.stringify(req.query)} `); // Log the timestamp and IP address
 };
 
 router.get('/', (req, res) => {
@@ -37,6 +37,9 @@ router.all(
     },
     createHandler({
         schema: schema,
+        context: {
+            mongoDBConnection: mongoDBConnection,
+        },
     }),
 );
 
